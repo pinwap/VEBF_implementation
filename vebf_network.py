@@ -2,7 +2,7 @@ import numpy as np
 from vebf_neuron import VEBFNeuron
 from utils import calculate_initial_a
 
-class VebfNetwork:
+class VEBFNetwork:
     def __init__(self, X_train, delta=1.0, n0=5, theta=-0.5):
         # X_train : ข้อมูล training ทั้งหมด
         # delta : ตัวคูณปรับค่า a0
@@ -76,8 +76,8 @@ class VebfNetwork:
                 continue #ข้ามไปลูปถัดไป
             
             # คำนวณ psi_merge
-            psi_merge1 = target_neuron.calculate_psi_merge(other_neuron)
-            psi_merge2 = other_neuron.calculate_psi_merge(target_neuron)
+            psi_merge1 = target_neuron.calculate_merge_phi(other_neuron)
+            psi_merge2 = other_neuron.calculate_merge_phi(target_neuron)
             
             if psi_merge1 <= self.theta or psi_merge2 <= self.theta:
                 # merge other_neuron เข้า target_neuron

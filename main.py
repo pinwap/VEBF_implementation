@@ -6,7 +6,7 @@ from sklearn.metrics import accuracy_score
 from sklearn.utils import shuffle
 from sklearn.model_selection import train_test_split
 
-from vebf_network import VebfNetwork
+from vebf_network import VEBFNetwork
 from utils import calculate_initial_a, load_dataset
 
 def plot_result(X, y, network, title="VEBF Network Results"):
@@ -60,7 +60,7 @@ def main():
     
     # Create and train VEBF Network
     print("\n-----Starting training-----")
-    network = VebfNetwork(X_train=X_train, delta=1, n0=5, theta=-0.5)
+    network = VEBFNetwork(X_train=X_train, delta=1, n0=5, theta=-0.5)
     
     network.train(X_train, y_train)
     print("Training completed. Total neurons created:", len(network.neurons))

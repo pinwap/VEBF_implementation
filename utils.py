@@ -1,5 +1,11 @@
 import numpy as np
 
+def load_dataset(file_path):
+    data = np.loadtxt(file_path, delimiter=',')
+    X = data[:, :-1]  # features
+    y = data[:, -1] # labels
+    return X, y
+
 def calculate_initial_a(X, delta=0.1, max_samples=1000):
     # 5.1 คำนวณค่า a เริ่มต้น จาก 
     # X : ข้อมูล training ทั้งหมด ; X.shape = (N, n_dim) แถว=จำนวนข้อมูล คอลัมน์=จำนวนฟีเจอร์
@@ -34,3 +40,4 @@ def calculate_initial_a(X, delta=0.1, max_samples=1000):
     # 4. คืนค่า a vector (ขนาดเท่า dimension ของข้อมูล)
     # เปเปอร์บอกให้ใช้ค่าเท่ากันทุกแกนในตอนแรก
     return np.full(n_dim, delta * d_av)
+

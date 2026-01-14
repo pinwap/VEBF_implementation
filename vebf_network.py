@@ -1,5 +1,5 @@
 import numpy as np
-from vebf_neuron import VebfNeuron
+from vebf_neuron import VEBFNeuron
 from utils import calculate_initial_a
 
 class VebfNetwork:
@@ -66,7 +66,7 @@ class VebfNetwork:
     
     def create_neuron(self, x, t):
         # สร้าง neuron ใหม่ ใช้ self.a0 เป็นค่า a เริ่มต้น
-        neuron = VebfNeuron(center = x, label = t, n_dim = len(x), a_init=self.a0.copy()) # ใช้ self.a0.copy() เพื่อไม่ให้ Neuron แก้ค่าต้นฉบับ
+        neuron = VEBFNeuron(center = x, label = t, n_dim = len(x), a_init=self.a0.copy()) # ใช้ self.a0.copy() เพื่อไม่ให้ Neuron แก้ค่าต้นฉบับ
         self.neurons.append(neuron)
     
     def attempt_merge(self, target_neuron):

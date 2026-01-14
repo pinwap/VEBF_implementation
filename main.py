@@ -4,6 +4,7 @@ from matplotlib.patches import Ellipse
 from sklearn import datasets
 from sklearn.metrics import accuracy_score
 from sklearn.utils import shuffle
+from sklearn.model_selection import train_test_split
 
 from vebf_network import VebfNetwork
 from utils import calculate_initial_a, load_dataset
@@ -49,27 +50,33 @@ def main():
     iris = datasets.load_iris()
     X = iris.data
     y = iris.target
-    
+   
     # เลือกแค่ 2 feature แรก = Petal Length, Petal Width จะได้วาดกราฟง่ายๆ
     X_selected = X[:, 2:4]
-    
-    # Shuffle data
-    X_shuffled, y_shuffled = shuffle(X_selected, y, random_state=42)
+
+    # split train-test data
+    X_train, X_test, y_train, y_test = train_test_split(X_selected, y, test_size=0.3, random_state=42, stratify=y)
+    print(f"Training samples: {len(X_train)}, Test samples: {len(X_test)}")
     
     # Create and train VEBF Network
-    print("-----Starting training-----")
-    network = VebfNetwork(X_train=X_shuffled, delta=1.5, n0=5, theta=0.8)
+    print("\n-----Starting training-----")
+    network = VebfNetwork(X_train=X_train, delta=1, n0=5, theta=-0.5)
     
-    network.train(X_train=X_shuffled, y_train=y_shuffled)
+    network.train(X_train, y_train)
     print("Training completed. Total neurons created:", len(network.neurons))
      
     # Evaluate accuracy
-    y_pred = network.predict(X_shuffled)
-    accuracy = accuracy_score(y_shuffled, y_pred)
-    print(f"Training Accuracy: {accuracy * 100:.2f}%")
+    print("\n-----Evaluation-----")
+    train_pred = network.predict(X_train)
+    train_accuracy = accuracy_score(y_train, train_pred)
+    print(f"Training Accuracy: {train_accuracy * 100:.2f}%")
+    
+    test_pred = network.predict(X_test)
+    test_accuracy = accuracy_score(y_test, test_pred)
+    print(f"Test Accuracy: {test_accuracy * 100:.2f}%")
     
     # Plot results
-    plot_result(X_shuffled, y_shuffled, network, title="VEBF Network on Iris Dataset")
+    plot_result(X_selected, y, network, title=f"VEBF Result on Iris Dataset.(Test Acc: {test_accuracy*100:.2f}%)")
 
 if __name__ == "__main__":
     main()

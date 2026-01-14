@@ -30,7 +30,6 @@ def plot_result(X, y, network, title="VEBF Network Results"):
         angle = np.degrees(np.arctan2(eigenvectors[1, 0], eigenvectors[0, 0]))
         
         # สร้าง Ellipse patch
-        width = 2 * a[0]  , height = 2 * a[1]
         ellipse = Ellipse(xy=center, width=2* a[0], height=2* a[1], angle=angle, edgecolor=colors[int(neuron.label)], facecolor='none', linewidth=2, linestyle='--')
         
         ax.add_patch(ellipse)

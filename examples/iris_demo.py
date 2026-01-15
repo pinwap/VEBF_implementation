@@ -12,8 +12,16 @@ def main():
     # Use Classification2DPlotter
     plotter = Classification2DPlotter()
 
-    # Run experiment
-    run_experiment(loader, plotter)
+    # Run experiment with standard VEBF
+    print("\n--- Running Standard VEBF ---")
+    run_experiment(loader, plotter, network_type="vebf")
+
+    # Run experiment with Hybrid VEBF
+    print("\n--- Running Hybrid VEBF ---")
+    # Reset loader or ensure reusable (loader.load() usually shuffles, so might get slightly different splits if randomized.
+    # To compare strictly, we might want fixed split, but for demo separate runs are fine)
+    run_experiment(loader, plotter, network_type="hybrid")
+
 
 if __name__ == "__main__":
     main()

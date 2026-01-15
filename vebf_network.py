@@ -76,8 +76,8 @@ class VEBFNetwork:
                 continue #ข้ามไปลูปถัดไป
             
             # คำนวณ psi_merge
-            psi_merge1 = target_neuron.calculate_merge_phi(other_neuron)
-            psi_merge2 = other_neuron.calculate_merge_phi(target_neuron)
+            psi_merge1 = target_neuron.calculate_merge_psi(other_neuron)
+            psi_merge2 = other_neuron.calculate_merge_psi(target_neuron)
             
             if psi_merge1 <= self.theta or psi_merge2 <= self.theta:
                 # merge other_neuron เข้า target_neuron

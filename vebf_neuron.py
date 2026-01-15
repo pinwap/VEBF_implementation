@@ -106,8 +106,8 @@ class VEBFNeuron:
         # ตรวจสอบว่าจุดข้อมูล x อยู่ในขอบเขตของ neuron หรือไม่
         return self.calculate_psi(x)-1 <= 0
     
-    def calculate_merge_phi(self, other_neuron):
-        # phi สำหรับ merge neuron ตัวนี้ กับ other_neuron
+    def calculate_merge_psi(self, other_neuron):
+        # psi สำหรับ merge neuron ตัวนี้ กับ other_neuron
         center_diff = self.center - other_neuron.center
         projected = np.dot(center_diff, other_neuron.eigenvectors)
         

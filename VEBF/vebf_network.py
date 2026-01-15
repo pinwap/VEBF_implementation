@@ -1,6 +1,6 @@
 import numpy as np
-from vebf_neuron import VEBFNeuron
-from utils import calculate_initial_a
+from VEBF.vebf_neuron import VEBFNeuron
+from VEBF.utils import calculate_initial_a
 
 class VEBFNetwork:
     def __init__(self, X_train, delta=1.0, n0=5, theta=-0.5):
